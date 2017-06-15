@@ -1,32 +1,31 @@
 
 class BinarySearch(list):
-    """BinarySearch class
-    This class sublcasses the builtin list class and extends it to have a search
-    method that returns a dictionary {'count': int, 'index': int}
-    The class __init__ method takes in the length and a step argument and populates
-    itself based on their values
-    it also has a length attribute that shows it length.
+    """This class inherits from
+    the constructor (_init_) which
+     initialize an instance variable, length,
+
+    that returns the number of elements in the array
+          
     """
-    def __init__(self, length, step):
-        """class constructor method"""
-        # initialize the super class
+    def __init__(self, a, b):
+       #constructor method
+        # initialize the parent class
+        #constructor for the binary seach class
         super(BinarySearch, self).__init__()
+        
+        # populate the class based on the length and step argument
+        for data in range(1, a+1):
+            self.append(data * b)
 
-        # populate the class based on the length and step arguments
-        for elem in range(1, length+1):
-            self.append(elem * step)
-
-        # define a length attribute
+        # define a length of the attributes inthe array
         self.length = len(self)
 
     def search(self, val):
-        """perform a binary search to locate value
-        args:
-            val (int): value to locate
-        returns:
-            dict: dictionary of the form {'count': int, 'index': int}
-            the count key shows the number of binary search iterations
-            and the index is the position of the value.
+        """create a method to conduct a binary to find the value
+        and return a dictionary with key(count) and value(index)
+        where count is the number of time the function iterations and index 
+        is the postion of value
+        
         """
         # initialize the first and last indices
         first = 0
@@ -34,7 +33,7 @@ class BinarySearch(list):
         value_index = 0
         found = False
 
-        # initialize counter
+        # initialize counter to start from the first element
         counter = 0
 
         # check if val is the first or last element
@@ -45,19 +44,20 @@ class BinarySearch(list):
             value_index = last
             found = True
 
-        # check if val is not present in the list
+        # check whether val is in the list
         if val not in self:
             found = True
             value_index = -1
 
-        # binary search algorithm using a while loop
+        #while loop to implement binary search algorithm 
         while first <= last and not found:
             mid = (first + last) // 2
             if self[mid] == val:
                 found = True
                 value_index = mid
             else:
-                counter += 1  # update counter when an interaction occurs
+                # update counter aftereach iteration
+                counter += 1  
                 if val < self[mid]:
                     last = mid - 1
                 else:
